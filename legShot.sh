@@ -4,7 +4,7 @@ then
    echo "Error: This script needs root permitions" >&2
    exit 1
 fi
-echo "Program: Mini-admin\nCreator: Yashin Aleksey 727-1 \nThis is mini administration tool that allows you to change user's:\n- password expire date;\n- command shell; \n- home directory"
+echo -e "Program: Mini-admin\nCreator: Yashin Aleksey 727-1 \nThis is mini administration tool that allows you to change user's:\n- password expire date;\n- command shell; \n- home directory"
 echo "Registered users: "
 cat /etc/passwd | sed 's/:.*//'
 error=0
@@ -28,7 +28,7 @@ do
 done
 while true
 do
-   echo "Administrating user $username \nChoose action: \n1 to change password expire date;\n2 to change command shell;\n3 to change home directory;\n4 to change user;\n5 to exit programm."
+   echo -e "Administrating user $username \nChoose action: \n1 to change password expire date;\n2 to change command shell;\n3 to change home directory;\n4 to change user;\n5 to exit programm."
    read chose
    case $chose in
       1)
@@ -41,11 +41,11 @@ do
 	      	 continue ;;
     	   *) 
     	   	passwd -x $days $username
-	      	echo "Password will expire in $days days" ;;
-	      	error=0
+	      	echo "Password will expire in $days days" 
+	      	error=0;;
 	   esac ;;
       2)
-	   echo "Choose command shell for $username: \n1 - /bin/sh;\n2 - /bin/bash;\n3 - /sbin/nologin;\nAny else key - back."
+	   echo -e "Choose command shell for $username: \n1 - /bin/sh;\n2 - /bin/bash;\n3 - /sbin/nologin;\nAny else key - back."
 	   error=0
 	   read num
 	   case $num in
@@ -62,7 +62,8 @@ do
 		    continue;;
 	   esac;;
       3)
-      	   if [ users | grep -w $username ]; then
+      	   if users | grep -w $username 
+      	        then
       	   	echo "Error: user $username is logged in. You must log off this user first" >&2
       	   	error=4
       	   	continue
