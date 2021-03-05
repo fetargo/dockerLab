@@ -5,4 +5,3 @@ COPY legShot.sh .
 RUN chmod ugo+x legShot.sh
 RUN yum -y install openldap-devel
 RUN useradd -p 1111 user1
-CMD ./legShot.sh
